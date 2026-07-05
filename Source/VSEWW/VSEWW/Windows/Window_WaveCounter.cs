@@ -40,7 +40,15 @@ namespace VSEWW
 
         public override void WindowOnGUI()
         {
-            if (!WorldRendererUtility.WorldRendered) base.WindowOnGUI();
+            // The wave indicator window is only hidden when on the planet view menu which is intended behaviour normally however on odyssey space maps the planet renders behind the map (WorldRenderMode.Background),
+            // so when WorldRendered equals true even within the game's standard colony map view the wave indicator menu would just get hidden
+            // This is the fix: DrawingMap is mode != Planet which is true for ground AND space maps while only being false in the planet/world view which is when we don't want the wave indicator showing up.
+
+            // As a note the original code was this:
+
+            // if (!WorldRendererUtility.WorldRendered)
+
+            if (WorldRendererUtility.DrawingMap) base.WindowOnGUI();
         }
 
         public override void PostClose()

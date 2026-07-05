@@ -77,8 +77,23 @@ namespace VSEWW
         public override void FinalizeInit()
         {
             var mapParent = map.Parent;
-            canReceiveWave = map.Biome.defName != "OuterSpaceBiome" && (mapParent == null || mapParent.def.canBePlayerHome) && map.ParentFaction == Faction.OfPlayer;
+            canReceiveWave = CanBiomeReceiveWave(map.Biome) && (mapParent == null || mapParent.def.canBePlayerHome) && map.ParentFaction == Faction.OfPlayer;
             nextTick = Find.TickManager.TicksGame + winstonTick;
+        }
+
+
+        // This checks for two things. A: Is the current Biome the SOS 2 space biome and B: Are we in a odyssey space biome and if so check the users config to see if space raids are enabled.
+        private static bool CanBiomeReceiveWave(BiomeDef biome)
+        {
+            // Save Our Ship 2 ship maps are always excluded as the orignal code did.
+            if (biome.defName == "OuterSpaceBiome")
+                return false;
+
+            // Odyssey vacuum maps. Only when the player enables the allowSpaceRaids setting within the mod config menu.
+            if (biome.inVacuum)
+                return WinstonMod.settings.allowSpaceRaids;
+
+            return true;
         }
 
         public override void MapComponentTick()

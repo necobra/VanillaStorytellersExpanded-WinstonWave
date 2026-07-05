@@ -246,6 +246,9 @@ namespace VSEWW
             gameSettingsLst.Gap(5);
 
             gameSettingsLst.CheckboxLabeled("VESWW.EnableStats".Translate(), ref settings.enableStatIncrease, "VESWW.EnableStatsTip".Translate());
+            gameSettingsLst.Gap(5);
+
+            gameSettingsLst.CheckboxLabeled("VESWW.AllowSpaceRaids".Translate(), ref settings.allowSpaceRaids, "VESWW.AllowSpaceRaidsTip".Translate());
             gameSettingsLst.GapLine(12);
 
             gameSettingsLst.Gap(12);
