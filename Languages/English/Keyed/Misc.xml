@@ -74,6 +74,7 @@
   <VESWW.ResetCounterPos>Reset wave counter position</VESWW.ResetCounterPos>
   <VESWW.LoadToReset>Load a save using Winston first!</VESWW.LoadToReset>
   <VESWW.DisableSteelSlagChunk>Reward drop pods also drop steel slag chunk(s)</VESWW.DisableSteelSlagChunk>
+  <VESWW.AllowSpaceRaids>[Odyssey] Allow raids on space maps:</VESWW.AllowSpaceRaids>
   <VESWW.GS>General</VESWW.GS>
   <VESWW.VS>Waves</VESWW.VS>
   <VESWW.MS>Modifiers</VESWW.MS>
@@ -90,4 +91,5 @@
   <VESWW.MysteryModTip>With this enabled, the modifier will always be hidden. You will know a modifier has been applied, but not which one.</VESWW.MysteryModTip>
   <VESWW.ShowDraggableTip>If disabled, you won't be able to change the counter draggabality until you reactivate this.</VESWW.ShowDraggableTip>
   <VESWW.UseRimworldTimeTip>If this is enabled the timer use rimworld time instead of real life time.</VESWW.UseRimworldTimeTip>
+  <VESWW.AllowSpaceRaidsTip>Allows raids to occur in Odyssey space biomes. Requires map reload to take effect.</VESWW.AllowSpaceRaidsTip>
 </LanguageData>
