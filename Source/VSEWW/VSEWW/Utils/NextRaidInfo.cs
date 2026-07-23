@@ -59,6 +59,8 @@ namespace VSEWW
                 canKidnap=false,
                 canSteal=false
             };
+            if (parms.faction != null)
+                parms.points *= WinstonMod.settings.GetFactionPointsMultiplier(parms.faction.def.defName);
             atTick = ticks + (int)(days * GenDate.TicksPerDay);
             generatedAt = ticks;
             waveNumber = wave;
