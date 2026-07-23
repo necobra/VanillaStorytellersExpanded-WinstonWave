@@ -231,6 +231,9 @@ namespace VSEWW
             waveSettingsLst.GapLine(12);
             waveSettingsLst.Gap(12);
 
+            waveSettingsLst.CheckboxLabeled("VESWW.IgnoreBaseCommonality".Translate(), ref settings.ignoreBaseRaidCommonality, "VESWW.IgnoreBaseCommonalityTip".Translate());
+            waveSettingsLst.Gap(5);
+
             if (waveSettingsLst.ButtonText("VESWW.OpenFactionMultipliers".Translate()))
             {
                 Find.WindowStack.Add(new Dialog_FactionMultipliers());

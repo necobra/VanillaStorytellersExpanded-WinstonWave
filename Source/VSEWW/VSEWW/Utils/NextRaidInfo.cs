@@ -108,10 +108,11 @@ namespace VSEWW
             {
                 float num = 1f;
                 if (map.StoryState != null && map.StoryState.lastRaidFaction != null && f == map.StoryState.lastRaidFaction)
-                {
                     num = 0.4f;
-                }
-                return f.def.RaidCommonalityFromPoints(points) * num;
+
+                float baseCommonality = WinstonMod.settings.ignoreBaseRaidCommonality ? 1f : f.def.RaidCommonalityFromPoints(points);
+
+                return baseCommonality * num * WinstonMod.settings.GetFactionWeightMultiplier(f.def.defName);
             }, out Faction faction);
 
             return faction;

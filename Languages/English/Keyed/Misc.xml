@@ -102,4 +102,7 @@
   <VESWW.Hostile>hostile</VESWW.Hostile>
   <VESWW.Allied>allied</VESWW.Allied>
   <VESWW.Neutral>neutral</VESWW.Neutral>
+  <VESWW.Unknown>unknown</VESWW.Unknown>
+  <VESWW.IgnoreBaseCommonality>Ignore base raid commonality curve</VESWW.IgnoreBaseCommonality>
+  <VESWW.IgnoreBaseCommonalityTip>When enabled, the faction's built-in RaidCommonalityFromPoints curve is ignored entirely, and only your weight multiplier decides the chance of that faction raiding.</VESWW.IgnoreBaseCommonalityTip>
 </LanguageData>

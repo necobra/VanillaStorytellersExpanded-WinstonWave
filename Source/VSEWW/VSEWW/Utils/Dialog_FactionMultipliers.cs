@@ -10,7 +10,8 @@ namespace VSEWW
     {
         private Vector2 scrollPosition;
         private List<FactionDef> factions;
-        private const float RowHeight = 130f;
+        private const float RowHeight = 160f;
+        private readonly bool gameActive;
 
         public override Vector2 InitialSize => new Vector2(600f, 700f);
 
@@ -20,6 +21,8 @@ namespace VSEWW
             doCloseX = true;
             forcePause = true;
             absorbInputAroundWindow = true;
+
+            gameActive = Current.ProgramState == ProgramState.Playing && Find.FactionManager != null;
 
             factions = DefDatabase<FactionDef>.AllDefsListForReading
                 .Where(f => !f.pawnGroupMakers.NullOrEmpty()
@@ -53,19 +56,26 @@ namespace VSEWW
                 var nameRect = listing.GetRect(Text.LineHeight);
                 Text.WordWrap = false;
 
-                var factionInstance = Find.FactionManager.AllFactions.FirstOrDefault(f => f.def == factionDef);
+                string label = $"{factionDef.LabelCap} ({factionDef.defName})";
 
-                string relationLabel;
-                if (factionInstance == null)
-                    relationLabel = "VESWW.Unknown".Translate();
-                else if (factionInstance.HostileTo(Faction.OfPlayer))
-                    relationLabel = "VESWW.Hostile".Translate();
-                else if (factionInstance.RelationKindWith(Faction.OfPlayer) == FactionRelationKind.Ally)
-                    relationLabel = "VESWW.Allied".Translate();
-                else
-                    relationLabel = "VESWW.Neutral".Translate();
+                if (gameActive)
+                {
+                    var factionInstance = Find.FactionManager.AllFactions.FirstOrDefault(f => f.def == factionDef);
 
-                Widgets.Label(nameRect, $"{factionDef.LabelCap} ({factionDef.defName}) [{relationLabel}]");
+                    string relationLabel;
+                    if (factionInstance == null)
+                        relationLabel = "VESWW.Unknown".Translate();
+                    else if (factionInstance.HostileTo(Faction.OfPlayer))
+                        relationLabel = "VESWW.Hostile".Translate();
+                    else if (factionInstance.RelationKindWith(Faction.OfPlayer) == FactionRelationKind.Ally)
+                        relationLabel = "VESWW.Allied".Translate();
+                    else
+                        relationLabel = "VESWW.Neutral".Translate();
+
+                    label += $" [{relationLabel}]";
+                }
+
+                Widgets.Label(nameRect, label);
                 Text.WordWrap = true;
 
                 listing.Label($"{"VESWW.WeightMultiplier".Translate()}: {weightMult:F1}");
